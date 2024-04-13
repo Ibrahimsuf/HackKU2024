@@ -32,10 +32,10 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    if 'file' not in request.files:
+    if 'image' not in request.files:
         return 'No file part'
 
-    file = request.files['file']
+    file = request.files['image']
 
     if file.filename == '':
         return 'No selected file'
@@ -48,7 +48,7 @@ def upload_file():
     session.add(new_file)
     session.commit()
 
-    output_img = image_manipulation(new_file)
+    output_img = image_manipulation(new_file, request.form['time'], request.form['Latitude'], request.form['Longitude'])
     img_data = base64.b64encode(output_img.getvalue()).decode()
 
     return render_template("show_image.html", image_data=img_data)

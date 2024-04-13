@@ -5,7 +5,10 @@ import cv2
 import numpy as np
 import io
 
-def image_manipulation(image_obj):
+def image_manipulation(image_obj, time, longitude, latitude):
+    print(time)
+    print(longitude)
+    print(latitude)
     # Decode the raw image data into a NumPy array
     nparr = np.frombuffer(image_obj.file_contents, np.uint8)
     image = cv2.imdecode(nparr, cv2.IMREAD_GRAYSCALE)

@@ -12,6 +12,7 @@
             margin-bottom: 20px;
         }
     </style>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
 </head>
 <body>
     <h1>Location Input Form</h1>
@@ -24,7 +25,6 @@
     </form>
     <div id="map"></div>
     <div id="coordinates"></div>
-
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
     <script src="{{ url_for('static', filename='example.js') }}"></script>
     </script>

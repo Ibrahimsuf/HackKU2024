@@ -1,55 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stargazer - Explore Constellations</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Location Input Form</title>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
-  </head>
-
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
 <body>
-    <header class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <h1>Stargazer</h1>
-            <p class="lead">Upload a picture of the stars and explore constellations</p>
-        </div>
-    </header>
-    <main class="container my-5" style="min-height: calc(500px - 60px)">
-        <section id="upload-section" class="mb-4">
-            <h2 class="mb-3">Upload Your Picture</h2>
-            <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
-              <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="image-upload" name="file" accept="image/*">
-                  <label class="custom-file-label" for="image-upload">Choose file</label>
-              </div>
-              <div class="form-group">
-                  <label for="time">Time:</label>
-                  <input type="datetime-local" class="form-control" id="time" name="time">
-              </div>
-              <div class="form-group">
-                <label for="location">Enter Location:</label>
-                <input type="text" id="location" name="location" onchange="findLocation()">
-                <input type="hidden" name="Longitude" id="Longitude">
-                <input type="hidden" name="Latitude" id="Latitude">
-              </div>
-              <button type="submit" class="btn btn-primary mt-3">Upload</button>
-          </form>
-        <div id="map"></div>
-        </section>
-        <section id="constellation-section">
-            <h2>Constellations</h2>
-            <canvas id="constellation-canvas" class="border"></canvas>
-        </section>
-    </main>
-    <footer class="bg-dark text-white py-3">
-        <div class="container text-center" style="min-height: 60px">
-            <p>&copy; 2024 Stargazer. All rights reserved.</p>
-        </div>
-    </footer>
+    <h1>Location Input Form</h1>
+    <form id="location-form" action="/upload" method="post" enctype="multipart/form-data">
+        <label for="location">Enter Loc3ation:</label>
+        <input type="text" id="location" name="location" onchange="findLocation()">
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image">
+        <label for="time">Enter Time:</label>
+        <input type="datetime-local" id="time" name="time">
+        <input type="hidden" name="Longitude" id="Longitude">
+        <input type="hidden" name="Latitude" id="Latitude">
+        <button type="submit">Find Location</button>
+    </form>
+    <div id="map"></div>
+    <div id="coordinates"></div>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
     <script src="{{ url_for('static', filename='example.js') }}"></script>
-  </body>
+</body>
 </html>

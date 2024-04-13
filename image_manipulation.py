@@ -1,10 +1,27 @@
 import cv2
 import os
 import numpy as np
-def image_manipulation(image_path):
-  image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-  edges = cv2.Canny(image, threshold1=100, threshold2=200)
-  image_name = os.path.splitext(image_path)[0]
-  output_path = f"{image_name}_edges.png"
-  cv2.imwrite(output_path, edges)
-  return output_path
+import cv2
+import numpy as np
+import io
+
+def image_manipulation(image_obj):
+    # Decode the raw image data into a NumPy array
+    nparr = np.frombuffer(image_obj.file_contents, np.uint8)
+    image = cv2.imdecode(nparr, cv2.IMREAD_GRAYSCALE)
+
+    # Apply Canny edge detection
+    edges = cv2.Canny(image, threshold1=100, threshold2=200)
+
+    # Return the edges image
+    _, buffer = cv2.imencode(".jpg", edges)
+
+    # Convert the memory buffer to a bytes object
+    bytes_obj = buffer.tobytes()
+
+    # Create a file-like object from the bytes object
+    file_obj = io.BytesIO(bytes_obj)
+
+    # save the image
+    return file_obj
+

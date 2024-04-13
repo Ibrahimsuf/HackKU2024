@@ -53,6 +53,15 @@ def upload_file():
 
     return render_template("show_image.html", image_data=img_data)
 
+@app.route("/example")
+def example():
+  return render_template("example.html")
+
+@app.route("/location", methods=["POST"])
+def location():
+    longitude = request.form["Longitude"]
+    latitude = request.form["Latitude"]
+    return f"Longitude: {longitude}, Latitude: {latitude}"
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

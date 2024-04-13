@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from image_manipulation import image_manipulation
+import os
 
 app = Flask(__name__)
 
@@ -17,9 +19,12 @@ def upload_file():
         return 'No selected file'
 
     # Save the file to a folder (in this case, 'uploads' within the 'static' folder)
-    file.save('static/uploads/' + file.filename)
+    filename = os.path.join('static/uploads', file.filename)
+    file.save(filename)
 
-    return 'File uploaded successfully'
+    output_path = image_manipulation(filename)
+
+    return render_template("show_image.html", image_name=output_path)
 
 
 if __name__ == '__main__':

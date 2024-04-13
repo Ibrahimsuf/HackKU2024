@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stargazer - Explore Constellations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <header class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <h1>Stargazer</h1>
+            <p class="lead">Upload a picture of the stars and explore constellations</p>
+        </div>
+    </header>
+    <main class="container my-5" style="min-height: calc(500px - 60px)">
+        <section id="upload-section" class="mb-4">
+            <h2 class="mb-3">Upload Your Picture</h2>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image-upload" accept="image/*">
+                <label class="custom-file-label" for="image-upload">Choose file</label>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="processImage()">Explore Constellations</button>
+        </section>
+        <section id="constellation-section">
+            <h2>Constellations</h2>
+            <canvas id="constellation-canvas" class="border"></canvas>
+        </section>
+    </main>
+    <footer class="bg-dark text-white py-3">
+        <div class="container text-center" style="min-height: 60px">
+            <p>&copy; 2024 Stargazer. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

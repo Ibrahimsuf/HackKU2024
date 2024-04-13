@@ -3,11 +3,17 @@ Repo for HackKU 2024 project Stargazer (name pending)
 
 
 
-
+On mac
 ```
 python3 -m venv hackku2024
 source hackku2024 /bin/activate
-myenv\Scripts\activate
+pip install -r requirements.txt
+```
+
+On windows
+```
+python3 -m venv hackku2024
+hackku2024\Scripts\activate
 pip install -r requirements.txt
 ```
 
